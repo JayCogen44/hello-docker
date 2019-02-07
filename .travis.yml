@@ -3,4 +3,14 @@ services:
   - docker
 
 script: 
-  - docker build -t hello-docker .
+  - docker build -t jaycog44/hello-docker2 .
+  - docker images jaycog44/hello-docker2
+
+before_deploy:
+  - docker login -u jaycog44 -p 9335Dqi2W2n2uDs
+
+deploy:
+  provider: script
+  script: docker push jaycog44/hello-docker2
+  on: 
+    branch: master
